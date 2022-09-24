@@ -29,7 +29,8 @@ def output_result(ID, headers):
     res_r = r.json()
     result_r = res_r["data"]
     for j in result_r:
-        print("port:",j["port"],"Status:","\33[0;36m",j["statusStr"],"\33[0m"," ",end="") 
+        if j["statusStr"] == "可用":
+            print("port:",j["port"],"Status:","\33[0;36m",j["statusStr"],"\33[0m"," ",end="") 
     print()
 
 if __name__ == '__main__':
@@ -41,25 +42,3 @@ if __name__ == '__main__':
             output_result(ID, headers)
         if place == "ALL":
             output_result(ID, headers)
-
-'''
-for i in result_r0:
-    name = i["equipCache"]["name"]
-    ID = i["equipCache"]["cd"]
-    if name.encode("utf-8").decode("utf-8")[0:3] == place.encode("utf-8").decode("utf-8"):
-        print(name," ",end="")
-        r = requests.get(url % (ID), headers=headers)
-        res_r = r.json()
-        result_r = res_r["data"]
-        for j in result_r:
-            print("port:",j["port"],"Status:","\33[0;36m",j["statusStr"],"\33[0m"," ",end="") 
-        print()
-    if place == "ALL":
-        print(name," ",end="")
-        r = requests.get(url % (ID), headers=headers)
-        res_r = r.json()
-        result_r = res_r["data"]
-        for j in result_r:
-            print("port:",j["port"],"Status:","\33[0;36m",j["statusStr"],"\33[0m"," ",end="")
-        print()
-'''
